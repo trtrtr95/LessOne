@@ -11,14 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160228163043) do
+ActiveRecord::Schema.define(version: 20160229131947) do
 
   create_table "pages", force: :cascade do |t|
+    t.string   "name"
     t.string   "title"
     t.text     "html_text"
     t.text     "path"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "pages", ["path"], name: "index_pages_on_path", unique: true
+
+  create_table "underones", force: :cascade do |t|
+    t.string   "title"
+    t.text     "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-  add_index "pages", ["path"], :name => "index_pages_on_path", :unique => true
+
 end
