@@ -19,6 +19,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 group :development, :test do
   gem 'byebug'
+  gem 'rspec-rails', '2.13.1'
+  gem 'guard-rspec', '2.5.0'
 end
 
 group :development do
@@ -26,3 +28,6 @@ group :development do
   gem 'spring'
 end
 
+group :test do
+  gem 'capybara', '2.1.0'
+end
