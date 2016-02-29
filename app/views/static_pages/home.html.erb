@@ -5,9 +5,9 @@
 Структура небольшого, но гордого сайта: </h2> </p>
 <ul>
 <li><%= link_to "Первая страница", one_path %></li>
-<li><%= link_to "_Подстраница один", oneone_path %></li>
-<li><%= link_to "_Подстраница два", twoone_path %></li>
-<li><%= link_to "__Подподстраница страница", underone_path %></li>
+<li><%= link_to "_Подстраница один", '/one/oneone' %></li>
+<li><%= link_to "_Подстраница два", '/one/twoone' %></li>
+<li><%= link_to "__Подподстраница страница", '/one/twoone/underone' %></li>
 <li><%= link_to "Вторая страница", two_path %></li>
 </ul>
 </h2>

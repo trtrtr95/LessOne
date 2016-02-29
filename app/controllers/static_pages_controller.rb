@@ -12,9 +12,11 @@ class StaticPagesController < ApplicationController
 	def twoone
 	end
 
-	def oneone
+    def oneone
 	end
 
 	def underone
 	end
+
 end
+
