@@ -9,7 +9,7 @@ class PagesController < ApplicationController
   end
 
   def create
-    @page = Page.new create_params ()
+    @page = Page.new(create_params)
      if @page.save
       redirect_to show_path(:pages => @page.path), notice: [ t('pages.create.page_created') ]
     else
@@ -35,7 +35,7 @@ class PagesController < ApplicationController
   end
 
   def update
-    if @current_page.update_attributes update_params
+    if @current_page.update_attributes(update_params)
       redirect_to show_path(:pages =>  @current_page_path), notice: [ t('pages.update.page_updated') ]
     else
       redirect_to edit_path(:pages =>  @current_page_path), alert: @current_page.errors
@@ -66,14 +66,11 @@ private
   end
 
   def create_params 
-  #params.require(:page).permit(:name, :title, :html_text)
-   prepare_params ['name', 'title', 'html_text']
-    params[:page].merge(:parent_path => @current_page_path)
+params.require(:page).permit(:name, :title, :html_text).merge(:parent_path => @current_page_path)
   end
 
   def update_params
-    prepare_params ['title', 'html_text']
-    params[:page]
+params.require(:page).permit(:title, :html_text)
   end
 
   def prepare_params right_columns

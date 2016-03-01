@@ -24,11 +24,4 @@ ActiveRecord::Schema.define(version: 20160229131947) do
 
   add_index "pages", ["path"], name: "index_pages_on_path", unique: true
 
-  create_table "underones", force: :cascade do |t|
-    t.string   "title"
-    t.text     "text"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
 end
