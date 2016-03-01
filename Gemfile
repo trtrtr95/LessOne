@@ -25,8 +25,11 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 group :development, :test do
   gem 'byebug'
-  gem 'rspec-rails', '2.13.1'
-  gem 'guard-rspec', '2.5.0'
+  gem 'rspec-rails'
+  gem 'guard-rspec'
+  gem 'spork-rails'
+  gem 'guard-spork'
+  gem 'childprocess'
 end
 
 group :development do
@@ -35,5 +38,5 @@ group :development do
 end
 
 group :test do
-  gem 'capybara', '2.1.0'
+  gem 'capybara'
 end
