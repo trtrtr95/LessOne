@@ -1,0 +1,13 @@
+doctype html
+html
+  head
+    title= "Тестовый сайт. " + (content_for?(:title) ? yield(:title) : t('title'))
+    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
+    = javascript_include_tag "application", "data-turbolinks-track"
+    = csrf_meta_tags
+  body
+    = render :partial => 'layouts/header'
+    .container
+    = render :partial => 'layouts/navigation'
+    = render :partial => 'layouts/errors'
+    = yield

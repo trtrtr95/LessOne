@@ -9,8 +9,8 @@ class PagesController < ApplicationController
   end
 
   def create
-    @page = Page.new create_params
-    if @page.save
+    @page = Page.new create_params ()
+     if @page.save
       redirect_to show_path(:pages => @page.path), notice: [ t('pages.create.page_created') ]
     else
       redirect_to add_path(:pages =>  @current_page_path), alert: @page.errors
@@ -65,8 +65,9 @@ private
     redirect_to root_path, :alert => [ t('invalid_path') ] if @current_page.nil? && !params[:pages].nil?
   end
 
-  def create_params
-    prepare_params ['name', 'title', 'html_text']
+  def create_params 
+  #params.require(:page).permit(:name, :title, :html_text)
+   prepare_params ['name', 'title', 'html_text']
     params[:page].merge(:parent_path => @current_page_path)
   end
 

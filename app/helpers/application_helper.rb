@@ -1,12 +1,6 @@
 module ApplicationHelper
-
-  # Returns the full title on a per-page basis.
-  def full_title(page_title)
-    base_title = "Тестовое задание"
-    if page_title.empty?
-      base_title
-    else
-      "#{base_title} | #{page_title}"
-    end
+  def title(page_title, show_title = true)
+    content_for(:title) { page_title.to_s }
+    "<h1>#{page_title.to_s}</h1>".html_safe if show_title
   end
 end

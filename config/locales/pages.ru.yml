@@ -1,0 +1,32 @@
+ru:
+  activerecord:
+    attributes:
+      page:
+        name: Название страницы
+        title: Заголовок страницы
+        html_text: Содержимое страницы
+      errors:
+        invalid_name: содержит недопустимые символы
+  pages:
+    new:
+      title: Создание новой страницы
+    edit:
+      title: Изменение параметров страницы
+    form:
+      name_placeholder: Имя_страницы
+      title_placeholder: Заголовок страницы
+    create:
+      page_created: Страница создана
+    update:
+      page_updated: Страница обновлена
+    destroy:
+      page_destroyed: Страница и все её подстраницы удалены
+      page_not_destroyed: Не удалось удалить страницу
+    index:
+      title: Все страницы сайта
+    navigation:
+      up: К родителю
+      delete: Удалить
+      edit: Изменить
+      add: Добавить
+      back: Назад

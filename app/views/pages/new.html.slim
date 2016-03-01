@@ -1,0 +1,4 @@
+= title t('.title')
+
+= form_for @page, :url => create_path(:pages => @current_page_path) do |form|
+  = render :partial => 'form', :locals => { :f => form }
