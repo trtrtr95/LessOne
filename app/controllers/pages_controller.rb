@@ -36,9 +36,9 @@ class PagesController < ApplicationController
 
   def update
     if @current_page.update_attributes(update_params)
-      redirect_to show_path(:pages =>  @current_page_path), notice: [ t('pages.update.page_updated') ]
+       redirect_to show_path(:pages =>  @current_page_path), notice: [ t('pages.update.page_updated') ]
     else
-      redirect_to edit_path(:pages =>  @current_page_path), alert: @current_page.errors
+       redirect_to edit_path(:pages =>  @current_page_path), alert: @current_page.errors
     end
   end
 
@@ -53,8 +53,8 @@ class PagesController < ApplicationController
 private
 
  def get_page
-  @current_page = Page.where(:path => params[:pages]).first
- @current_page_path =  @current_page.path if @current_page
+    @current_page = Page.where(:path => params[:pages]).first
+    @current_page_path =  @current_page.path if @current_page
   end
 
   def check_for_current_page
@@ -66,11 +66,11 @@ private
   end
 
   def create_params 
-params.require(:page).permit(:name, :title, :html_text).merge(:parent_path => @current_page_path)
+    params.require(:page).permit(:name, :title, :html_text).merge(:parent_path => @current_page_path)
   end
 
   def update_params
-params.require(:page).permit(:title, :html_text)
+    params.require(:page).permit(:title, :html_text)
   end
 
   def prepare_params right_columns
