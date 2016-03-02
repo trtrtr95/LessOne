@@ -4,3 +4,4 @@ module ApplicationHelper
     "<h1>#{page_title.to_s}</h1>".html_safe if show_title
   end
 end
+#Определяет заголовок
