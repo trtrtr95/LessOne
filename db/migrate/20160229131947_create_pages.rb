@@ -7,8 +7,8 @@ class CreatePages < ActiveRecord::Migration
       t.text    :path, :unique => true
 
       t.timestamps
-    end
+ end
 
     add_index :pages, :path, :unique => true
-  end
+ end
 end

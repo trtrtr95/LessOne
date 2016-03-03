@@ -10,7 +10,7 @@ class PageTest < ActiveSupport::TestCase
       it {should have_title ('')}
       it {should have_content ('')}
       it { should_not have_title('| Создание новой страницы') }
-    end
+   end
 
    describe "Index page"  do
 
@@ -18,7 +18,7 @@ class PageTest < ActiveSupport::TestCase
     it {should have_title ('Все страницы сайта')}
     it {should have_content ('')}
     it { should_not have_title('| Все страницы сайта ') }
-	 end
+   end
 
    describe "Application page"  do
 
@@ -26,7 +26,7 @@ class PageTest < ActiveSupport::TestCase
     it {should have_title ('Тестовый сайт')}
     it {should have_content ('')}
     it { should_not have_title('| Тестовый сайт ') }
-	 end
+   end
 
    describe "_Form page"  do
 
@@ -35,11 +35,11 @@ class PageTest < ActiveSupport::TestCase
 
     FactoryGirl.define do
 
-      sequence(:name) { |n| "Это четвертая страница" }
-      sequence(:title) { |n| "Страница4" }
-      sequence(:html_text) { |n| "Ку-ку ;)" }
-      end
+      sequence(:name) { "Это четвертая страница" }
+      sequence(:title) { "Страница4" }
+      sequence(:html_text) { "Ку-ку ;)" }
     end
+   end
 
 
   end

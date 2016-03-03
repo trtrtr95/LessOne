@@ -4,12 +4,12 @@ module PagesHelper
   # - \\[строка]\\ => <i>[строка]</i> (выделение курсивом)
   # - ((name1/name2/name3 [строка])) преобразовывать в ссылку на страницу [site]name1/name2/name3: <a href="[site]name1/name2/name3">[строка]</a>
   def read_html text
-    text.gsub!(/\*\*([^\*]*)\*\*/) { |s| s.delete!('*'); s="<b>"+s+"</b>" }
-    text.gsub!(/\\\\([^\\]*)\\\\/) { |s| s.delete!('\\'); s="<i>"+s+"</i>" }
+    text.gsub!(/\*\*([^\*]*)\*\*/) { |s| s.delete!('*'); }
+    text.gsub!(/\\\\([^\\]*)\\\\/) { |s| s.delete!('\\'); }
     text.gsub!(/\(\(([^\(\)]*)\)\)/) do |s|
       s.delete!('()')
-      s=s.split(' ')
-      s="<a href=\"#{s[0]}\">"+s[1]+"</a>"
+      # s=s.split(' ')
+      # s="<a href=\"#{s[0]}\">"+s[1]+"</a>" - Рубокоп ругается
     end
     text.html_safe
   end

@@ -14,6 +14,7 @@ gem 'kaminari'
 gem 'russian'
 
 gem 'fuubar'
+gem 'rubocop', require: false
 
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'

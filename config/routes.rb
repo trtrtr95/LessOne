@@ -9,8 +9,4 @@ LessOne::Application.routes.draw do
     post   '/create',  to: 'pages#create'
   end 
    root :to => 'pages#show'
-
-  
- 
 end
-
