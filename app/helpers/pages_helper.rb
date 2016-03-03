@@ -1,11 +1,8 @@
 module PagesHelper
-  # Форматирует текст перед выдачей
-  # - **[строка]** => <b>[строка]</b> (выделение жирным)
-  # - \\[строка]\\ => <i>[строка]</i> (выделение курсивом)
-  # - ((name1/name2/name3 [строка])) преобразовывать в ссылку на страницу [site]name1/name2/name3: <a href="[site]name1/name2/name3">[строка]</a>
-   def read_html text
+  
+  def read_html text
     text.html_safe  
-   end
+  end
 
   # Ищет путь родителя элемента по текущему пути
   def parent_path current_page_path
