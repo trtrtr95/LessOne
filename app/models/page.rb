@@ -1,6 +1,6 @@
 class Page < ActiveRecord::Base
   # Задаётся при создании новой страницы - указывается путь родителя
-  attr_writer :parent_path 
+attr_writer :parent_path 
 
   validates :name, format: {with: /[а-яА-ЯёЁa-zA-Z0-9_]/, message: I18n.t('activerecord.attributes.errors.invalid_name') },
                    uniqueness: true, presence: true
