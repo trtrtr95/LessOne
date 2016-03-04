@@ -1,7 +1,7 @@
 module PagesHelper
   
   def read_html text
-    text.html_safe  
+    text.html_safe
   end
 
   # Ищет путь родителя элемента по текущему пути
