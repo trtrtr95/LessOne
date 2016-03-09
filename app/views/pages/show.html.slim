@@ -1,5 +1,9 @@
-h1= @page.title
+- content_for(:navigation) do
+  =link_to t('pages.navigation.up'), root_path(:pages => @current_page_path)
 
+h1= @page.title
+p
+  = raw @page.formatted_body
 = render 'pages', pages: @pages
 = link_to "Редактировать", edit_page_path(@page.names)
 = link_to "Добавить страницу", add_page_path(@page.names)

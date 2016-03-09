@@ -1,10 +1,5 @@
-.form-inputs
-  - unless f.object.id
-    .form-label= f.label :name
-    .form-field= f.text_field :name, :placeholder => t('.name_placeholder')
-  .form-label= f.label :title
-  .form-field= f.text_field :title, :placeholder => t('.title_placeholder')
-  .form-label= f.label :html_text
-  .form-field= f.text_area :html_text
-.form-actions
-  = f.submit t('save')
+= f.input :name
+= f.input :title
+= f.input :body
+= f.input :parent_id, as: :hidden
+= f.submit t('save')

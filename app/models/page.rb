@@ -5,6 +5,7 @@ class Page < ActiveRecord::Base
   validates :title, presence: true
 
   before_save :format_body
+  after_destroy :delete_child_pages
 
   def names
     path.map(&:name).join('/')
@@ -33,5 +34,10 @@ class Page < ActiveRecord::Base
     self.formatted_body = body.gsub(bold_regexp, '<b>\k<text></b>').
                                gsub(italic_regexp, '<i>\k<text></i>').
                                gsub(a_regexp, '<a href="/\k<path>">\k<text></a>')
+  end
+
+  def delete_child_pages
+    # Удаляем все пути, начинающиеся с удаляемого без вызова колбэков
+    Page.delete_all("\"path\" LIKE '#{self.path}/%'")
   end
 end

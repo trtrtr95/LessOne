@@ -5,6 +5,7 @@ ru:
         name: Название страницы
         title: Заголовок страницы
         html_text: Содержимое страницы
+        body: Текст страницы
       errors:
         invalid_name: содержит недопустимые символы
   pages:
@@ -15,6 +16,7 @@ ru:
     fields:
       name_placeholder: Имя_страницы
       title_placeholder: Заголовок страницы
+      body_placeholder: Текст страницы
     create:
       page_created: Страница создана
     update:

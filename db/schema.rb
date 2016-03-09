@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20160308101018) do
     t.text     "html_text"
     t.text     "path"
     t.text     "body"
+    t.text     "formatted_body"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "ancestry"
