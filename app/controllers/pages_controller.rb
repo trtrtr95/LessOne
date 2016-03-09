@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
   before_filter :set_page, only: [:show, :create, :edit, :update, :destroy]
-  
+
+
   def index
     @pages = Page.roots
   end
@@ -19,7 +20,6 @@ class PagesController < ApplicationController
 
   def create
     @page = Page.new(create_params)
-
     if @page.save
       redirect_to page_path(@page.names), notice: [ t('pages.create.page_created') ]
     else
@@ -57,12 +57,12 @@ class PagesController < ApplicationController
 
 private
 
- def create_params 
-   params.require(:page).permit(:name, :title, :body, :text, :parent_id)
- end
+
+  def create_params 
+    params.require(:page).permit(:name, :title, :body, :text, :parent_id)
+  end
 
   def set_page
     @page = Page.find_by_names(params[:names])
   end
-
 end

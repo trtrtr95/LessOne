@@ -1,11 +1,11 @@
 class Page < ActiveRecord::Base
   has_ancestry
 
-  validates :name, presence: true, uniqueness: true, format: { with: /[a-zA-Zа-яА-Я0-9_]/ }
+  validates :name, presence: true, uniqueness: true, format: { with: /[a-zA-Zа-яА-Я0-9_]/, :message => I18n.t('activerecord.attributes.errors.invalid_name') }
   validates :title, presence: true
 
   before_save :format_body
-  after_destroy :delete_child_pages
+  after_destroy :delete
 
   def names
     path.map(&:name).join('/')
@@ -36,8 +36,7 @@ class Page < ActiveRecord::Base
                                gsub(a_regexp, '<a href="/\k<path>">\k<text></a>')
   end
 
-  def delete_child_pages
-    # Удаляем все пути, начинающиеся с удаляемого без вызова колбэков
+  def delete
     Page.delete_all("\"path\" LIKE '#{self.path}/%'")
   end
 end

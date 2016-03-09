@@ -27,7 +27,7 @@ ru:
     index:
       title: Все страницы сайта
     navigation:
-      up: Назад
+      up: На главную
       delete: Удалить
       edit: Изменить
       add: Добавить

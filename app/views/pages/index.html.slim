@@ -1,5 +1,8 @@
+= title t('.title')
+
 - content_for(:navigation) do
-= link_to "Добавить корневую страницу", add_root_page_path
+  =link_to t('pages.navigation.add'), add_root_page_path
+
 
 = render 'pages', pages: @pages
 
