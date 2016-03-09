@@ -12,7 +12,7 @@ ru:
       title: Создание новой страницы
     edit:
       title: Изменение параметров страницы
-    form:
+    fields:
       name_placeholder: Имя_страницы
       title_placeholder: Заголовок страницы
     create:

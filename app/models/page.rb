@@ -1,36 +1,37 @@
 class Page < ActiveRecord::Base
-  # Задаётся при создании новой страницы - указывается путь родителя
-attr_writer :parent_path 
+  has_ancestry
 
-  validates :name, format: {with: /[а-яА-ЯёЁa-zA-Z0-9_]/, message: I18n.t('activerecord.attributes.errors.invalid_name') },
-                   uniqueness: true, presence: true
-  validates :path, uniqueness: true
+  validates :name, presence: true, uniqueness: true, format: { with: /[a-zA-Zа-яА-Я0-9_]/ }
+  validates :title, presence: true
 
-  before_create :set_path
-  after_destroy :delete_child_pages
+  before_save :format_body
 
-  # Cортирует данные сразу в подходящем порядке для выдачи
-  scope :tree, lambda { |id = nil|
-    page = Page.where(id: id).first if id
-    if page
-      where("\"path\" LIKE '%#{page.path}/%'").order(:path)
-    else
-      order(:path)
-    end
-  }
-
-  scope :by_path, ->(path) { where path: path }
-
-private
-
-  def set_path
-    # Новый путь - это путь родителя + \ + name новой страницы
-    self.path = @parent_path.blank? ? "" : @parent_path + '/'
-    self.path += self.name
+  def names
+    path.map(&:name).join('/')
   end
 
-  def delete_child_pages
-    # Удаляем все пути, начинающиеся с удаляемого без вызова колбэков
-    Page.delete_all("\"path\" LIKE '#{self.path}/%'")
+  # Возвращает объект страницы по пути
+  def self.find_by_names(names) 
+    return nil if names.nil?
+    last_name = names.split("/").last
+    find_by_name(last_name)
+  end
+
+  # Возвращает id объекта страницы из строки пути
+  def self.find_id_by_names(names) 
+    return nil if names.nil?
+    find_by_names(names).id
+  end
+
+  # Преобразует тэги в html тэги
+  def format_body 
+    return nil if body.nil?
+    bold_regexp = Regexp.new('\*\*(?<text>.+)\*\*')
+    italic_regexp = Regexp.new('\\\\\\\\(?<text>.+)\\\\\\\\')
+    a_regexp = Regexp.new('\(\((?<path>[^\s]+)\s(?<text>.+)\)\)')
+
+    self.formatted_body = body.gsub(bold_regexp, '<b>\k<text></b>').
+                               gsub(italic_regexp, '<i>\k<text></i>').
+                               gsub(a_regexp, '<a href="/\k<path>">\k<text></a>')
   end
 end

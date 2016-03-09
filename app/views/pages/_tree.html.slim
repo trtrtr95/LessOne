@@ -1,6 +1,0 @@
-.tree
-  - Page.tree(@current_page ? @current_page.id : nil).each do |page|
-    .page
-      - level(page, @current_page).times do
-        | >
-      = link_to page.name, show_path(:pages => page.path)

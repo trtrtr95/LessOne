@@ -1,44 +1,49 @@
 class PagesController < ApplicationController
-  before_filter :get_page
-  before_filter :check_for_current_page, :only => [:edit, :update, :destroy]
-  before_filter :check_for_invalid_path, :only => [:new, :show, :create]
+  before_filter :set_page, only: [:show, :create, :edit, :update]
 
   def index
-    @pages = Page.where(:parent_id => nil)
-    render :index
+    @pages = Page.roots
   end
 
-  def create
-    @page = Page.new(create_params)
-     if @page.save
-      redirect_to show_path(:pages => @page.path), notice: [ t('pages.create.page_created') ]
-     else
-      redirect_to add_path(:pages =>  @current_page_path), alert: @page.errors
-     end
+  def show
+    @pages = @page.children
   end
 
   def new
+    @page = Page.new(parent_id: Page.find_id_by_names(params[:names]))
+  end
+
+  def new_root
     @page = Page.new
-    render :new
   end
 
-  def edit
-    @page = @current_page
+def create
+    @page = Page.new(create_params)
+
+    if @page.save
+      redirect_to page_path(@page.names)
+    else
+      render 'new'
+    end
   end
 
-  # Show перехватывает возможные обращения к экшенам index и new,
-  # когда  мы находимся на главной странице.
-  def show
-    @page = @current_page
-    new if params[:pages] == 'add'
-    index unless params[:pages]
+  def create_root
+    @page = Page.new(create_params)
+
+    if @page.save
+      redirect_to page_path(@page.names)
+    else
+      render 'new_root'
+    end
   end
+
+  def edit; end
 
   def update
-    if @current_page.update_attributes(update_params)
-       redirect_to show_path(:pages =>  @current_page_path), notice: [ t('pages.update.page_updated') ]
+    if @page.update_attributes(create_params)
+      redirect_to page_path(@page.names)
     else
-       redirect_to edit_path(:pages =>  @current_page_path), alert: @current_page.errors
+      render 'edit'
     end
   end
 
@@ -52,30 +57,12 @@ class PagesController < ApplicationController
 
 private
 
- def get_page
-   @current_page = Page.where(:path => params[:pages]).first
-   @current_page_path =  @current_page.path if @current_page
- end
-
- def check_for_current_page
-   redirect_to root_path, :alert => [ t('invalid_path') ] unless @current_page
- end
-
- def check_for_invalid_path
-   redirect_to root_path, :alert => [ t('invalid_path') ] if @current_page.nil? && !params[:pages].nil?
- end
-
  def create_params 
-   params.require(:page).permit(:name, :title, :html_text).merge(:parent_path => @current_page_path)
+   params.require(:page).permit(:name, :title, :html_text)
  end
 
- def update_params
-   params.require(:page).permit(:title, :html_text)
- end
+  def set_page
+    @page = Page.find_by_names(params[:names])
+  end
 
- def prepare_params right_columns
-   params[:page].delete_if do |key, _value|
-      !right_columns.include? key
-   end
- end
 end

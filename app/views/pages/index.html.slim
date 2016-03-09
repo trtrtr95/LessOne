@@ -1,6 +1,2 @@
-= title t('.title')
-
-- content_for(:navigation) do
-  = link_to t('pages.navigation.add'), add_path(:pages => @current_page_path)
-
-= render :partial => 'tree'
+= render 'pages', pages: @pages
+= link_to "Добавить корневую страницу", add_root_page_path

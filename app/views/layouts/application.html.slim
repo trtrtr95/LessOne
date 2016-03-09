@@ -1,12 +1,10 @@
 doctype html
 html
   head
-    title= "Тестовый сайт. " + (content_for?(:title) ? yield(:title) : t('title'))
-    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
-    = javascript_include_tag "application", "data-turbolinks-track"
-    = csrf_meta_tags
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+    title Тестовый сайт
+    = stylesheet_link_tag :all
+    = javascript_include_tag :defaults
+    = csrf_meta_tag
   body
-    .container
-    = render :partial => 'layouts/navigation'
-    = render :partial => 'layouts/errors'
     = yield

@@ -4,6 +4,7 @@ ruby '2.1.5'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.1'
 gem 'bootstrap-sass'
+gem 'simple_form'
 
 gem "slim-rails"
 gem 'slim'
@@ -12,6 +13,8 @@ gem 'sqlite3'
 gem 'kaminari'
 
 gem 'russian'
+
+gem 'ancestry'
 
 gem 'fuubar'
 gem 'rubocop', require: false
