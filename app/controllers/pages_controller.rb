@@ -57,7 +57,6 @@ class PagesController < ApplicationController
 
 private
 
-
   def create_params 
     params.require(:page).permit(:name, :title, :body, :text, :parent_id)
   end

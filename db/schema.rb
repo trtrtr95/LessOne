@@ -16,7 +16,6 @@ ActiveRecord::Schema.define(version: 20160308101018) do
   create_table "pages", force: :cascade do |t|
     t.string   "name"
     t.string   "title"
-    t.text     "html_text"
     t.text     "path"
     t.text     "body"
     t.text     "formatted_body"
