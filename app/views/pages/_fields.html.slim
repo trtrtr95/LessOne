@@ -1,5 +1,5 @@
 - content_for(:navigation) do
-  =link_to t('pages.navigation.back'), page_path(:pages => @current_page_path)
+  =link_to t('pages.navigation.up'), root_path(:pages => @current_page_path)
 = f.input :name
 = f.input :title
 = f.input :body

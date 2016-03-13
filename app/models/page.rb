@@ -1,7 +1,7 @@
 class Page < ActiveRecord::Base
   has_ancestry
 
-  validates :name, presence: true, uniqueness: true, format: { with: /[a-zA-Zа-яА-Я0-9_]/, :message => I18n.t('activerecord.attributes.errors.invalid_name') }
+  validates :name, presence: true, format: { with: /[а-яА-ЯёЁa-zA-Z0-9_]/, :message => I18n.t('activerecord.attributes.errors.invalid_name') }
   validates :title, presence: true
 
   before_save :format_body
