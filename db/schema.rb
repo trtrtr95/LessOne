@@ -16,7 +16,6 @@ ActiveRecord::Schema.define(version: 20160308101018) do
   create_table "pages", force: :cascade do |t|
     t.string   "name"
     t.string   "title"
-    t.text     "path"
     t.text     "body"
     t.text     "formatted_body"
     t.datetime "created_at"
@@ -25,6 +24,5 @@ ActiveRecord::Schema.define(version: 20160308101018) do
   end
 
   add_index "pages", ["ancestry"], name: "index_pages_on_ancestry"
-  add_index "pages", ["path"], name: "index_pages_on_path", unique: true
 
 end

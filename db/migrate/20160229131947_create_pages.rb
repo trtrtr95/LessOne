@@ -1,9 +1,8 @@
 class CreatePages < ActiveRecord::Migration
  def create
    create_table :pages do |t|
-      t.string  :name, :unique => true
+      t.string  :name
       t.string  :title
-      t.text    :path, :unique => true
       t.text 	 :body
       t.text 	 :formatted_body
       t.string  :ancestry
@@ -11,6 +10,6 @@ class CreatePages < ActiveRecord::Migration
       t.timestamps
    end
 
-    add_index :pages#, :path, :unique => true
+    add_index :pages
  end
 end
