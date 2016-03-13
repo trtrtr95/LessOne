@@ -1,7 +1,6 @@
 class PagesController < ApplicationController
   before_filter :set_page, only: [:show, :create, :edit, :update, :destroy]
 
-
   def index
     @pages = Page.roots
   end
@@ -48,7 +47,7 @@ class PagesController < ApplicationController
   end
 
   def destroy
-    if @current_page.destroy
+    if @page.destroy
       redirect_to root_path, notice: [ t('pages.destroy.page_destroyed') ]
     else
       redirect_to show_path(:pages =>  @current_page_path), notice: [ t('pages.destroy.page_not_destroyed') ]
