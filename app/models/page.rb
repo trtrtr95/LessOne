@@ -37,6 +37,6 @@ class Page < ActiveRecord::Base
   end
 
   def delete
-    Page.delete_all("\"path\" LIKE '#{self.path}/%'")
+    Page.delete_all("\"path\"")
   end
 end
